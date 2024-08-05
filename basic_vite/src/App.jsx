@@ -1,9 +1,18 @@
 import './App.css'
+import Free  from './free'
 
 function App() {
 
   return (
-    <h1>Hello world | vite + react</h1>
+
+    // how to warp more than one element in react
+    // <> are known as fragments 
+    <> 
+      <h1>world</h1>
+      <Free/>
+      <p>hello</p>
+    </>
+    
   )
 }
 

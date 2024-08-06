@@ -15,8 +15,6 @@ function customrender(reactELement, container){
 
     container.appendChild(domElement)
 
-
-
 }
 
 const reactELement = {

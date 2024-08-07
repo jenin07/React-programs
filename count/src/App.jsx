@@ -13,12 +13,22 @@ const addValue = () => {
   // console.log("clicked", counter);
   
   // counter++;
-  setcounter(counter + 1)
-  
+  if(counter == 20){
+    return;
+  }
+  else{
+    setcounter(counter + 1)
+  }  
 }
 
 const remvalue = () => {
-  setcounter(counter - 1)
+  if(counter == 0){
+    return;
+  }
+  else{
+    setcounter(counter - 1)
+  }
+  
 }
 
   return (

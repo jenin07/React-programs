@@ -5,15 +5,41 @@ function App() {
   const [length, setlength] = useState(8);
   const [number, setnumber] = useState(false);
   const [character, setcharacter] = useState(false);
-  const [Password, setpassword] = useState("")
+  const [Password, setpassword] = useState("");
 
-  const password_gen = useCallback(() => {}, [Password, length, character, number])
+  const password_gen = useCallback(() => {
+    let password = "";
+    let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+    if(number) str += "1234567890";
+    if(character) str += "!@#$%&*(){}[_+-";
+
+    for (let i = 1; i <= array.length; i++) {
+        let char = Math.floor(Math.random() * str.length + 1);
+        password = str.charAt(char);
+
+    }
+
+    password_gen(password)
+  }, [Password, length, character, number])
 
   return (
     <>
-      <h1 className='text-4xl text-center text text-white'>
-        Password Generator
-      </h1>
+      <div className='w-full max-w-md mx-auto shadow-md rounded-lg px-4 my-8 text-purple-600 bg-gray-300'>
+        <h1 className='text-white text-center my-3'>Password Genrator</h1>
+        <div className='flex shadow rounded-lg overflow-hidden mb-4'>
+          <input
+          className='outline-none w-full py-1 px-3'
+          type='text'
+          value={Password}
+          placeholder='Password'
+          readOnly
+          />
+          <button className='oultine-none bg-violet-500 text-white px-3 py-1 shrink-0 rounded-md'>
+            Copy
+          </button>
+        </div> 
+      </div> 
     </>
   )
 }

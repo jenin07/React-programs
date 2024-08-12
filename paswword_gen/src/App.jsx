@@ -14,13 +14,13 @@ function App() {
     if(number) str += "1234567890";
     if(character) str += "!@#$%&*(){}[_+-";
 
-    for (let i = 1; i <= array.length; i++) {
+    for (let i = 1; i <= length; i++) {
         let char = Math.floor(Math.random() * str.length + 1);
         password = str.charAt(char);
 
     }
 
-    password_gen(password)
+    setpassword(password)
   }, [Password, length, character, number])
 
   return (
@@ -47,8 +47,31 @@ function App() {
               max={100}
               value = {length}
               className='cursor-pointer'
+              onChange={(e) =>{setlength(e.target.value)}}
               />
-              <label> length: {length} </label>
+              <label> Length: {length} </label>
+          </div>
+          <div className='flex items-center gap-x-1'>
+              <input
+              type='checkbox'
+              defaultChecked={number}
+              id="numberInput"
+              onChange={() => {
+                setnumber((prev) => !prev);
+              }}
+              />
+              <label> Number: {number} </label>
+          </div>
+          <div className='flex items-center gap-x-1'>
+              <input
+              type='checkbox'
+              defaultChecked={character}
+              id="characterinput"
+              onChange={() => {
+                setcharacter((prev) => !prev);
+              }}
+              />
+              <label>Character: {character}</label>
           </div>
         </div>
       </div> 

@@ -1,4 +1,4 @@
-import { useState, useCallback  } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import './App.css'
 
 function App() {
@@ -7,8 +7,13 @@ function App() {
   const [character, setcharacter] = useState(false);
   const [Password, setpassword] = useState("");
 
+  // using useref
+
+  const passref = useRef(null);
+
+
   const password_gen = useCallback(() => {
-    let password = "";
+    let pass = "";
     let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
     if(number) str += "1234567890";
@@ -16,12 +21,27 @@ function App() {
 
     for (let i = 1; i <= length; i++) {
         let char = Math.floor(Math.random() * str.length + 1);
-        password = str.charAt(char);
+        pass += str.charAt(char);
 
     }
 
-    setpassword(password)
-  }, [Password, length, character, number])
+    setpassword(pass)
+  }, [length, character, number, setpassword])
+
+
+  const copyPassword = useCallback (() => {
+
+    passref.current?.select()
+    passref.current?.setSelectionRange
+    window.navigator.clipboard.writeText(Password)
+  },[Password])
+
+
+  useEffect(() => {
+    password_gen();
+  },[length, character, number, password_gen])
+
+
 
   return (
     <>
@@ -34,8 +54,11 @@ function App() {
           value={Password}
           placeholder='Password'
           readOnly
+          ref={passref}
           />
-          <button className='oultine-none bg-violet-500 text-white px-3 py-1 shrink-0 rounded-md'>
+          <button 
+          onClick={copyPassword}
+          className='oultine-none bg-violet-500 text-white px-3 py-1 shrink-0 rounded-md'>
             Copy
           </button>
         </div> 
